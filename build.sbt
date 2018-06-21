@@ -11,26 +11,16 @@ lazy val pomSettings = Seq(
   },
   publishArtifact in Test := false,
   licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
-  pomExtra :=
-    <url>https://github.com/bdkent/sbt-ghdocver</url>
-    <licenses>
-      <license>
-        <name>Apache-2.0</name>
-        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        <distribution>repo</distribution>
-      </license>
-    </licenses>
-    <scm>
-      <url>git@github.com:bdkent/sbt-ghdocver.git</url>
-      <connection>scm:git:git@github.com:bdkent/sbt-ghdocver.git</connection>
-    </scm>
-    <developers>
-      <developer>
-        <id>bdkent</id>
-        <name>Brian Kent</name>
-        <url>https://github.com/bdkent</url>
-      </developer>
-    </developers>
+  homepage := Some(url("https://github.com/bdkent/sbt-ghdocver")),
+  scmInfo := Some(
+    ScmInfo(
+      url("git@github.com:bdkent/sbt-ghdocver.git"),
+      "scm:git:git@github.com:bdkent/sbt-ghdocver.git"
+    )
+  ),
+  developers := List(
+    Developer(id="bdkent", name="Brian Kent", email="bkent314@gmail.com", url=url("https://github.com/bdkent"))
+  )
 )
 
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
