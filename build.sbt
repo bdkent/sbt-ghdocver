@@ -14,8 +14,8 @@ lazy val pomSettings = Seq(
   homepage := Some(url("https://github.com/bdkent/sbt-ghdocver")),
   scmInfo := Some(
     ScmInfo(
-      url("git@github.com:bdkent/sbt-ghdocver.git"),
-      "scm:git:git@github.com:bdkent/sbt-ghdocver.git"
+      url("https://github.com/bdkent/sbt-ghdocver"),
+      "git:git@github.com:bdkent/sbt-ghdocver.git"
     )
   ),
   developers := List(
