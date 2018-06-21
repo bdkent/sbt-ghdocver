@@ -44,3 +44,26 @@ Assuming you have the `PreprocessPlugin` enabled, `enablePlugins(PreprocessPlugi
 If you have a non-markdown README, you can set the `ghdvReadmeName` setting. For example, `ghdvReadmeName := "README.rst"` for a reStructuredText README.
 
 `sbt-ghdocver` should respect any changes to default paths in `sbt-site`.
+
+### `ghdvCopyScaladocs`
+
+`sbt-site` makes it easy to generate scaladocs. Then `sbt-ghpages` makes it easy to publish to the `gh-pages` branch. You are on your own, however, if you want to keep publish the scaladocs in the `/docs` folder in the same branch (useful for making previous scaladoc versions accessable).
+
+`ghdvCopyScaladocs` does this simple copy.
+
+Assuming you have the `SiteScaladocPlugin` plugin enabled, `enablePlugins(SiteScaladocPlugin)`, and are generating docs by version (such as `siteSubdirName in SiteScaladoc := "scaladocs/api/" + version.value`), then the `ghdvCopyScaladocs` task will copy the current `version`'s generated scaladocs folder from `/target/site/scaladocs/api/@VERSION@` to `/docs/scaladocs/api/@VERSION@`.
+
+You can customize the destination folder by setting `ghdvDocsDirName`.
+
+## Miscellaneous
+
+If all you are using `sbt-site` for is to generate the README and scaladocs, it is useful to make a little custom command in your `build.sbt`:
+
+```scala
+commands += Command.command("makeDocs") {
+  "makeSite" :: "ghdvCopyReadme" :: "ghdvCopyScaladocs" ::  _
+}
+```
+
+and then throw that new command as a step in your [`sbt-release`](https://github.com/sbt/sbt-release) process (`releaseStepCommand("makeDocs")`).
+
