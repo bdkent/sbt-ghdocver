@@ -33,16 +33,18 @@ lazy val pomSettings = Seq(
     </developers>
 )
 
+addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.3.2")
+
 lazy val root = (project in file(".")).
   settings(
     name := "sbt-ghdocver",
     version := "0.1.0",
     organization := "com.github.bdkent",
     scalaVersion := "2.12.6",
-    mainClass in (Compile, run) := Some("bdkent.sbtghdocver.Main"),
     sbtPlugin := true,
     sbtVersion := "1.1.6"
   ).
   settings(pomSettings)
+ 
 
 
