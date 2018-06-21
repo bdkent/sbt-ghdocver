@@ -33,12 +33,13 @@ lazy val pomSettings = Seq(
     </developers>
 )
 
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.3.2")
 
 lazy val root = (project in file(".")).
   settings(
     name := "sbt-ghdocver",
-    version := "0.1.0",
     organization := "com.github.bdkent",
     scalaVersion := "2.12.6",
     sbtPlugin := true,
